@@ -1,3 +1,4 @@
+package aula01;
 import java.awt.Graphics;
 
 import javax.swing.JFrame;
