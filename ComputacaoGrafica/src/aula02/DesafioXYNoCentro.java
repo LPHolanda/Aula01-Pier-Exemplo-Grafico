@@ -84,8 +84,8 @@ public class DesafioXYNoCentro extends JFrame {
 	}
 
 	public static void main(String[] args) {
-		DesafioXYNoCentro p = new DesafioXYNoCentro();
-		p.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		DesafioXYNoCentro xy = new DesafioXYNoCentro();
+		xy.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		// tempinho
 		try {
@@ -94,8 +94,8 @@ public class DesafioXYNoCentro extends JFrame {
 		}
 		;
 
-		p.desenha();
-		p.eixoXCartesiano();
-		p.eixoYCartesiano();
+		xy.desenha();
+		xy.eixoXCartesiano();
+		xy.eixoYCartesiano();
 	}
 }

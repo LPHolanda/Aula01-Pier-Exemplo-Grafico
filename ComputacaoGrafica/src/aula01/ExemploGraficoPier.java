@@ -3,7 +3,9 @@ import javax.swing.*;
 import java.awt.*;
 
 public class ExemploGraficoPier extends JFrame {
-       public ExemploGraficoPier() {
+	private static final long serialVersionUID = 1L;
+	
+	public ExemploGraficoPier() {
               setSize(800, 600);
               setTitle ("Exemplo");
               setVisible(true);
