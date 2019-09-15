@@ -60,7 +60,6 @@ public class CirculoPadrao extends JFrame {
 			System.out.println(e);
 		};
 
-//		circulo.desenhaQuadrante(0, 0);
 		circulo.desenhaQuadrante(-200, 0);
 		circulo.desenhaQuadrante(0, 200);
 	}

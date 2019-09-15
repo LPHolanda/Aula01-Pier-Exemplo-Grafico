@@ -22,11 +22,11 @@ public class CirculoSenCos extends JFrame {
 		
 		int largura = 250, altura = 250;
 		double x = 0, y = 0;
-		int peta = 0;
+		int teta = 0;
 		
-		while(peta <= 45) {			
-			y = r * Math.sin(Math.toRadians(peta));
-			x = r * Math.cos(Math.toRadians(peta));
+		while(teta <= 45) {			
+			y = r * Math.sin(Math.toRadians(teta));
+			x = r * Math.cos(Math.toRadians(teta));
 			
 			plot((int)x + largura, (int)y + altura);
 			plot((int)x + largura, (int)-y + altura);
@@ -44,7 +44,7 @@ public class CirculoSenCos extends JFrame {
 			};	
 			
 			
-			peta++;
+			teta++;
 		}
 	}
 	

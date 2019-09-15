@@ -26,8 +26,6 @@ public class DDA extends JFrame{
 		int x2 = 200;
 		int y2 = 200;
 
-//		int m = (y2 - y1) / (x2 - x1);
-//		int b = y1 - (m * x1);
 		
 		int m = (y2 - y1) / (x2 - x1);
 		if (m <= 1) {

@@ -7,3 +7,6 @@
 
 ## Aula 03
 ### Introdução a desenho de círculo padrão e utilizando seno e cosceno
+
+## Aula 04
+### Dedicada a entrega da atividade de polilinhas
