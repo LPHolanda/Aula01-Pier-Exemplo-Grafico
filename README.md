@@ -1,4 +1,8 @@
 # Aulas de Computação Gráfica na USJT-Mooca
+
+## Atividade A12
+#### Uso de Bresenham para retas e circunferência.
+
 ## Aula 01
 #### Introdução a retas
 
@@ -15,4 +19,4 @@
 #### Desenhos de rotação, translação e escala
 
 ## Aula 06
-#### Rotação sobre o eixo de grávidade do objeto
+#### Rotação sobre o centro de grávidade do objeto

@@ -45,15 +45,11 @@ public class Bresenham extends JFrame {
 			if (j % 2 == 0 && x1 <= 305) {
 
 				desenhaReta(x1, y1, x2, y2);
-				System.out.println(x1 + ", " + y1);
-				System.out.println(primeiraVez);
-				
 				
 				if (x1 == 60) {
 					y1 = y1 + 15;
 					x1 = x1 + 10;
 					desenhaReta(x1, y1, x2, y2);
-					System.out.println(x1 + ", " + y1);
 					x1 = x1 + 5;
 					
 				} else if (x1 >= 80) {
@@ -64,7 +60,6 @@ public class Bresenham extends JFrame {
 					
 					y1 = y1 + 15;
 					desenhaReta(x1, y1, x2, y2);
-					System.out.println(x1 + ", " + y1);
 					x1 = x1 + 5;
 					y1 = y1 + 15;
 					
@@ -92,7 +87,6 @@ public class Bresenham extends JFrame {
 						x1 = x1 + 15;
 						y1 = y1 + 15;
 						desenhaReta(x1, y1, x2, y2);
-						System.out.println(x1 + ", " + y1 + ", " + y2);
 						
 						z++;
 					}
@@ -108,21 +102,31 @@ public class Bresenham extends JFrame {
 						x1 = x1 + 20;
 						y1 = y1 + 15;
 						desenhaReta(x1, y1, x2, y2);
-						System.out.println(x1 + ", " + y1 + ", " + y2);
 						
 						z++;
 					}
 				}
 			}
 			
-			if (j % 11 == 0) {
+			if (j % 11 == 0 && i < 450) {
 				desenhaReta(0, i, -y + 707, x);
 				
-//				desenhaReta(i, 0, x, -y + 707);
 				i = i + 10;
 			}
-			
+
 			j = j + 1;
+		}
+		
+		x1 = 0;
+		y1 = 455;
+		x2 = 212;
+		y2 = 496;
+		while(y1 < 600) {
+			desenhaReta(0, y1, x2, y2);
+			
+			y1 = y1 + 10;
+			x2 = x2 + 13;
+			y2 = y2 + 11;
 		}
 	}
 	
@@ -304,5 +308,21 @@ public class Bresenham extends JFrame {
 //		tarefa2.desenhaReta(285, 560, 0, 850);
 //		tarefa2.desenhaReta(305, 575, 0, 950);
 		
+
+//		tarefa2.desenhaReta(0, 455, 212, 496);
+		
+		
+//		int y1 = 455;
+//		int x2 = 212;
+//		int y2 = 496;
+//		while(y1 < 600) {
+//			tarefa2.desenhaReta(0, y1, x, 496);
+//			System.out.println("A: 0, " + y1 + ", " + x2 + ", " + y2);
+//			
+//			y1 = y1 + 10;
+//			x2 = x2 + 10;
+//			y2 = y2 + 11;
+//			
+//		}
 	}
 }
