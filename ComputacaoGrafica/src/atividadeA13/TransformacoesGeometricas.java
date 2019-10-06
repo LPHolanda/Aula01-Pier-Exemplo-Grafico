@@ -18,7 +18,7 @@ public class TransformacoesGeometricas extends JFrame {
 	private int altura = 200, largura = 200, Tx = 0, Ty = 0;
 	public int[] pontos;
 	private boolean translacao=false, rotacao=false, escala=false;
-	public double raio = 0.1;
+	public double raio = 1;
 	
 	public TransformacoesGeometricas(int[] pontos) {
 		Graphics g = null;
@@ -85,6 +85,7 @@ public class TransformacoesGeometricas extends JFrame {
 		        } else if (escala) {
 		        	switch(captura) {
 			            case 40: // move para baixo
+			            	escala(pontos, 40, g);
 			                break;
 			            case 38: // move para cima
 			            	escala(pontos, 38, g);
@@ -182,8 +183,8 @@ public class TransformacoesGeometricas extends JFrame {
 			cos = Math.cos(Math.toRadians(raio));	
 			raio = raio + 0.01;
 		} else {
-			sen = Math.sin(Math.toRadians(raio));
-			cos = Math.cos(Math.toRadians(raio));
+			sen = Math.sin(Math.toRadians(-raio));
+			cos = Math.cos(Math.toRadians(-raio));
 			raio = raio - 0.01;
 		}
 		
@@ -224,9 +225,19 @@ public class TransformacoesGeometricas extends JFrame {
 		
 		int cx = 0;
 		int cy = 0;
+		double sx = 1;
+		double sy = 1;
 		int x = 0;
 		int y = 0;
 		int j = 0;
+		
+		if(tecla == 38) {
+			sx = sx + 0.01;
+			sy = sy + 0.01;
+		} else {
+			sx = sx - 0.01;
+			sy = sy - 0.01;
+		}
 		
 		for(int i = 0; i < pontos.length; i++) {
 			if (i % 2 == 0) {
@@ -245,12 +256,12 @@ public class TransformacoesGeometricas extends JFrame {
 				x = pontos[i];
 			} else {
 				y = pontos[i];
-//				double xL = 
-//				double yL = 
+				double xL = (-cx * sx) + cx + (x * sx);
+				double yL = (-cy * sy) + cy + (y * sy);
 				j = i - 1;
 				
-//				pontos[j] = (int)xL;
-//				pontos[i] = (int)yL;
+				pontos[j] = (int)xL;
+				pontos[i] = (int)yL;
 			}
 		}
 	}
