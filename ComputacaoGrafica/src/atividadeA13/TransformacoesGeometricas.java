@@ -15,12 +15,15 @@ import javax.swing.JOptionPane;
 public class TransformacoesGeometricas extends JFrame {
 	private static final long serialVersionUID = 1L;
 
-	private int altura = 200, largura = 200, Tx = 0, Ty = 0;
 	public int[] pontos;
+	int[] auxPontos;
+	boolean primeiraVez = false;
 	private boolean translacao=false, rotacao=false, escala=false;
-	public double raio = 1;
+	private double raio = 1;
+	private double sx = 1;
+	private double sy = 1;
 	
-	public TransformacoesGeometricas(int[] pontos) {
+	public TransformacoesGeometricas(int[] pontos, int[] auxPontos) {
 		Graphics g = null;
 		setTitle("Atividade A13");
 		setSize(600,600);
@@ -29,6 +32,10 @@ public class TransformacoesGeometricas extends JFrame {
 		setLocationRelativeTo(null);
 
 		this.pontos = pontos;
+		this.auxPontos = auxPontos;
+		for (int i = 0; i < this.pontos.length; i++) {
+			this.auxPontos[i] = auxPontos[i];
+		}
 		
         KeyListener listener = new KeyListener() {
 				
@@ -44,14 +51,20 @@ public class TransformacoesGeometricas extends JFrame {
 		        	translacao = true;
 		        	rotacao = false;
 		        	escala = false;
+		        	primeiraVez = true;
 		        } else if (captura == 82) {
+		        	raio = 1;
 		        	rotacao = true;
 		        	translacao = false;
 		        	escala = false;
+		        	primeiraVez = true;
 		        } else if (captura == 83) {
+		        	sx = 1;
+		        	sy = 1;
 		        	escala = true;
 		        	translacao = false;
 		        	rotacao = false;
+		        	primeiraVez = true;
 		        }
 		        
 		        if(translacao) {
@@ -72,6 +85,13 @@ public class TransformacoesGeometricas extends JFrame {
 			        repaint();
 			        
 		        } else if (rotacao) {
+		        	if(primeiraVez) {
+		        		for(int i = 0; i < auxPontos.length; i++ ) {
+		        			auxPontos[i] = pontos[i];
+		        		}
+		        		
+		        		primeiraVez = false;
+		        	}
 		        	switch(captura) {
 			            case 37: // move para esquerda
 			            	rotacao(pontos, 37, g);
@@ -83,6 +103,13 @@ public class TransformacoesGeometricas extends JFrame {
 			        repaint();
 		        	
 		        } else if (escala) {
+		        	if(primeiraVez) {
+		        		for(int i = 0; i < auxPontos.length; i++ ) {
+		        			auxPontos[i] = pontos[i];
+		        		}
+		        		
+		        		primeiraVez = false;
+		        	}
 		        	switch(captura) {
 			            case 40: // move para baixo
 			            	escala(pontos, 40, g);
@@ -106,9 +133,11 @@ public class TransformacoesGeometricas extends JFrame {
 		for (int i = 0; i < pontos.length; i ++) {
 			if (i % 2 == 0) {
 				if(tecla == 39) {
-					pontos[i] = pontos[i] + 1;				
+					pontos[i] = pontos[i] + 1;
+					auxPontos[i] = auxPontos[i] + 1; 
 				} else {
 					pontos[i] = pontos[i] - 1;
+					auxPontos[i] = auxPontos[i] - 1; 
 				}
 			}
 		}
@@ -118,9 +147,11 @@ public class TransformacoesGeometricas extends JFrame {
 		for (int i = 0; i < pontos.length; i ++) {
 			if (i % 2 != 0) {
 				if(tecla == 40) {
-					pontos[i] = pontos[i] + 1;					
+					pontos[i] = pontos[i] + 1;
+					auxPontos[i] = auxPontos[i] + 1; 
 				} else {
 					pontos[i] = pontos[i] - 1;
+					auxPontos[i] = auxPontos[i] - 1; 
 				}
 			}
 		}
@@ -175,17 +206,21 @@ public class TransformacoesGeometricas extends JFrame {
 	
 	public void rotacao(int[] pontos, int tecla, Graphics g) {
 		
+		for(int i = 0; i < this.auxPontos.length; i++ ) {
+			pontos[i] = auxPontos[i];
+		}
+		
 		double sen;
-		double cos;
+		double cos;		
 		
 		if(tecla == 37) {
 			sen = Math.sin(Math.toRadians(raio));
 			cos = Math.cos(Math.toRadians(raio));	
-			raio = raio + 0.01;
+			raio = raio + 1;
 		} else {
-			sen = Math.sin(Math.toRadians(-raio));
-			cos = Math.cos(Math.toRadians(-raio));
-			raio = raio - 0.01;
+			sen = Math.sin(Math.toRadians(raio));
+			cos = Math.cos(Math.toRadians(raio));
+			raio = raio - 1;
 		}
 		
 		int cx = 0;
@@ -223,10 +258,12 @@ public class TransformacoesGeometricas extends JFrame {
 	
 	public void escala(int[] pontos, int tecla, Graphics g) {
 		
+		for(int i = 0; i < this.auxPontos.length; i++ ) {
+			pontos[i] = auxPontos[i];
+		}
+		
 		int cx = 0;
 		int cy = 0;
-		double sx = 1;
-		double sy = 1;
 		int x = 0;
 		int y = 0;
 		int j = 0;
@@ -339,6 +376,7 @@ public class TransformacoesGeometricas extends JFrame {
 
 		int qtd = Integer.parseInt(JOptionPane.showInputDialog("Quantos vértices tem o seu poligono"));
 		int pontos[] = new int[qtd*2+2];
+		int auxPontos[] = new int[qtd*2+2];
 		
 		for(int i = 0; i < (qtd*2+2); i++) {
 			if(i % 2 == 0) {
@@ -351,7 +389,11 @@ public class TransformacoesGeometricas extends JFrame {
 			}
 		}
 		
-		TransformacoesGeometricas tg = new TransformacoesGeometricas(pontos);
+		for (int i = 0; i < pontos.length; i++) {
+			auxPontos[i] = pontos[i];
+		}
+		
+		TransformacoesGeometricas tg = new TransformacoesGeometricas(pontos, auxPontos);
 		tg.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		tg.desenharPoligono(pontos, g);
 	}
